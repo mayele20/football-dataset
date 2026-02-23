@@ -1,0 +1,369 @@
+[
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "load_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_data():\n    df = pd.read_csv(\"matches.csv\")\n    return df\ndf = load_data()\n# SECTION 1 : CRÉATION DE NOUVELLES COLONNES (Critère obligatoire)\n# Dérivation de colonnes\ndf['total_goals'] = df['home_team_goal'] + df['away_team_goal']\ndf['goal_difference'] = df['home_team_goal'] - df['away_team_goal']\ndf['match_year'] = pd.to_datetime(df['date']).dt.year\n# SECTION 2 : UTILISATION DE assign() (Critère obligatoire)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df = load_data()\n# SECTION 1 : CRÉATION DE NOUVELLES COLONNES (Critère obligatoire)\n# Dérivation de colonnes\ndf['total_goals'] = df['home_team_goal'] + df['away_team_goal']\ndf['goal_difference'] = df['home_team_goal'] - df['away_team_goal']\ndf['match_year'] = pd.to_datetime(df['date']).dt.year\n# SECTION 2 : UTILISATION DE assign() (Critère obligatoire)\ndf = df.assign(\n    result = df['goal_difference'].apply(\n        lambda x: 'Home Win' if x > 0 else ('Draw' if x == 0 else 'Away Win')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df['total_goals']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df['total_goals'] = df['home_team_goal'] + df['away_team_goal']\ndf['goal_difference'] = df['home_team_goal'] - df['away_team_goal']\ndf['match_year'] = pd.to_datetime(df['date']).dt.year\n# SECTION 2 : UTILISATION DE assign() (Critère obligatoire)\ndf = df.assign(\n    result = df['goal_difference'].apply(\n        lambda x: 'Home Win' if x > 0 else ('Draw' if x == 0 else 'Away Win')\n    )\n)\n# SIDEBAR : Filtres interactifs",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df['goal_difference']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df['goal_difference'] = df['home_team_goal'] - df['away_team_goal']\ndf['match_year'] = pd.to_datetime(df['date']).dt.year\n# SECTION 2 : UTILISATION DE assign() (Critère obligatoire)\ndf = df.assign(\n    result = df['goal_difference'].apply(\n        lambda x: 'Home Win' if x > 0 else ('Draw' if x == 0 else 'Away Win')\n    )\n)\n# SIDEBAR : Filtres interactifs\nst.sidebar.header(\"🎛️ Filtres\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df['match_year']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df['match_year'] = pd.to_datetime(df['date']).dt.year\n# SECTION 2 : UTILISATION DE assign() (Critère obligatoire)\ndf = df.assign(\n    result = df['goal_difference'].apply(\n        lambda x: 'Home Win' if x > 0 else ('Draw' if x == 0 else 'Away Win')\n    )\n)\n# SIDEBAR : Filtres interactifs\nst.sidebar.header(\"🎛️ Filtres\")\n# Filtre par saison",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "df = df.assign(\n    result = df['goal_difference'].apply(\n        lambda x: 'Home Win' if x > 0 else ('Draw' if x == 0 else 'Away Win')\n    )\n)\n# SIDEBAR : Filtres interactifs\nst.sidebar.header(\"🎛️ Filtres\")\n# Filtre par saison\nseason = st.sidebar.selectbox(\n    \"Choisir une saison\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "season",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "season = st.sidebar.selectbox(\n    \"Choisir une saison\",\n    options=['Toutes'] + list(df['season'].unique()),\n    index=0\n)\n# Filtre par ligue\nleague = st.sidebar.selectbox(\n    \"Choisir une ligue\",\n    options=['Toutes'] + list(df['league'].unique()),\n    index=0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "league",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "league = st.sidebar.selectbox(\n    \"Choisir une ligue\",\n    options=['Toutes'] + list(df['league'].unique()),\n    index=0\n)\n# Filtre par équipe\nteam = st.sidebar.selectbox(\n    \"Analyser une équipe spécifique\",\n    options=['Aucune'] + sorted(list(set(df['home_team'].unique()) | set(df['away_team'].unique()))),\n    index=0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "team",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "team = st.sidebar.selectbox(\n    \"Analyser une équipe spécifique\",\n    options=['Aucune'] + sorted(list(set(df['home_team'].unique()) | set(df['away_team'].unique()))),\n    index=0\n)\n# Application des filtres\nfiltered_df = df.copy()\nif season != 'Toutes':\n    filtered_df = filtered_df[filtered_df['season'] == season]\nif league != 'Toutes':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "filtered_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "filtered_df = df.copy()\nif season != 'Toutes':\n    filtered_df = filtered_df[filtered_df['season'] == season]\nif league != 'Toutes':\n    filtered_df = filtered_df[filtered_df['league'] == league]\n# MÉTRIQUES PRINCIPALES\nst.markdown(\"---\")\nst.header(\"📊 Vue d'ensemble\")\ncol1, col2, col3, col4 = st.columns(4)\nwith col1:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "home_stats",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "home_stats = filtered_df.groupby('home_team').agg({\n    'home_team_goal': ['sum', 'mean', 'std']\n}).round(2)\naway_stats = filtered_df.groupby('away_team').agg({\n    'away_team_goal': ['sum', 'mean', 'std']\n}).round(2)\n# Aplatir les colonnes\nhome_stats.columns = ['_'.join(col).strip() for col in home_stats.columns.values]\naway_stats.columns = ['_'.join(col).strip() for col in away_stats.columns.values]\n# Renommer pour clarté",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "away_stats",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "away_stats = filtered_df.groupby('away_team').agg({\n    'away_team_goal': ['sum', 'mean', 'std']\n}).round(2)\n# Aplatir les colonnes\nhome_stats.columns = ['_'.join(col).strip() for col in home_stats.columns.values]\naway_stats.columns = ['_'.join(col).strip() for col in away_stats.columns.values]\n# Renommer pour clarté\nhome_stats = home_stats.rename(columns={\n    'home_team_goal_sum': 'goals_scored_home',\n    'home_team_goal_mean': 'avg_goals_home',",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "home_stats.columns",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "home_stats.columns = ['_'.join(col).strip() for col in home_stats.columns.values]\naway_stats.columns = ['_'.join(col).strip() for col in away_stats.columns.values]\n# Renommer pour clarté\nhome_stats = home_stats.rename(columns={\n    'home_team_goal_sum': 'goals_scored_home',\n    'home_team_goal_mean': 'avg_goals_home',\n    'home_team_goal_std': 'std_goals_home'\n})\naway_stats = away_stats.rename(columns={\n    'away_team_goal_sum': 'goals_scored_away',",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "away_stats.columns",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "away_stats.columns = ['_'.join(col).strip() for col in away_stats.columns.values]\n# Renommer pour clarté\nhome_stats = home_stats.rename(columns={\n    'home_team_goal_sum': 'goals_scored_home',\n    'home_team_goal_mean': 'avg_goals_home',\n    'home_team_goal_std': 'std_goals_home'\n})\naway_stats = away_stats.rename(columns={\n    'away_team_goal_sum': 'goals_scored_away',\n    'away_team_goal_mean': 'avg_goals_away',",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "home_stats",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "home_stats = home_stats.rename(columns={\n    'home_team_goal_sum': 'goals_scored_home',\n    'home_team_goal_mean': 'avg_goals_home',\n    'home_team_goal_std': 'std_goals_home'\n})\naway_stats = away_stats.rename(columns={\n    'away_team_goal_sum': 'goals_scored_away',\n    'away_team_goal_mean': 'avg_goals_away',\n    'away_team_goal_std': 'std_goals_away'\n})",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "away_stats",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "away_stats = away_stats.rename(columns={\n    'away_team_goal_sum': 'goals_scored_away',\n    'away_team_goal_mean': 'avg_goals_away',\n    'away_team_goal_std': 'std_goals_away'\n})\n# Fusionner\nteam_stats = home_stats.join(away_stats, how='outer').fillna(0)\nteam_stats['total_goals_scored'] = team_stats['goals_scored_home'] + team_stats['goals_scored_away']\nteam_stats = team_stats.sort_values('total_goals_scored', ascending=False)\nst.subheader(\"Top 10 équipes (buts marqués)\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "team_stats",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "team_stats = home_stats.join(away_stats, how='outer').fillna(0)\nteam_stats['total_goals_scored'] = team_stats['goals_scored_home'] + team_stats['goals_scored_away']\nteam_stats = team_stats.sort_values('total_goals_scored', ascending=False)\nst.subheader(\"Top 10 équipes (buts marqués)\")\nst.dataframe(team_stats.head(10), use_container_width=True)\n# SECTION 5 : LES 3 GRAPHIQUES OBLIGATOIRES\nst.markdown(\"---\")\nst.header(\"📊 Visualisations\")\n# ============ GRAPHIQUE 1 : HISTOGRAMME ============\nst.subheader(\"1️⃣ Histogramme - Distribution des buts par match\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "team_stats['total_goals_scored']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "team_stats['total_goals_scored'] = team_stats['goals_scored_home'] + team_stats['goals_scored_away']\nteam_stats = team_stats.sort_values('total_goals_scored', ascending=False)\nst.subheader(\"Top 10 équipes (buts marqués)\")\nst.dataframe(team_stats.head(10), use_container_width=True)\n# SECTION 5 : LES 3 GRAPHIQUES OBLIGATOIRES\nst.markdown(\"---\")\nst.header(\"📊 Visualisations\")\n# ============ GRAPHIQUE 1 : HISTOGRAMME ============\nst.subheader(\"1️⃣ Histogramme - Distribution des buts par match\")\nfig1, ax1 = plt.subplots(figsize=(10, 5))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "team_stats",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "team_stats = team_stats.sort_values('total_goals_scored', ascending=False)\nst.subheader(\"Top 10 équipes (buts marqués)\")\nst.dataframe(team_stats.head(10), use_container_width=True)\n# SECTION 5 : LES 3 GRAPHIQUES OBLIGATOIRES\nst.markdown(\"---\")\nst.header(\"📊 Visualisations\")\n# ============ GRAPHIQUE 1 : HISTOGRAMME ============\nst.subheader(\"1️⃣ Histogramme - Distribution des buts par match\")\nfig1, ax1 = plt.subplots(figsize=(10, 5))\nax1.hist(filtered_df['total_goals'], bins=15, color='#3498db', edgecolor='black', alpha=0.7)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "mean_goals",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "mean_goals = filtered_df['total_goals'].mean()\nax1.axvline(mean_goals, color='red', linestyle='--', linewidth=2, label=f'Moyenne: {mean_goals:.2f}')\nax1.legend()\nst.pyplot(fig1)\nst.markdown(\"**💡 Analyse :** La plupart des matchs comptent entre 1 et 4 buts, avec une moyenne autour de 2.7 buts par match.\")\n# ============ GRAPHIQUE 2 : COURBE ============\nst.subheader(\"2️⃣ Courbe - Évolution des buts par année\")\nyearly_goals = df.groupby('match_year')['total_goals'].mean()\nfig2, ax2 = plt.subplots(figsize=(10, 5))\nax2.plot(yearly_goals.index, yearly_goals.values, marker='o', linewidth=2, markersize=8, color='#e74c3c')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "yearly_goals",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "yearly_goals = df.groupby('match_year')['total_goals'].mean()\nfig2, ax2 = plt.subplots(figsize=(10, 5))\nax2.plot(yearly_goals.index, yearly_goals.values, marker='o', linewidth=2, markersize=8, color='#e74c3c')\nax2.set_xlabel('Année', fontsize=12)\nax2.set_ylabel('Moyenne de buts par match', fontsize=12)\nax2.set_title('Évolution de la moyenne des buts par année', fontsize=14, fontweight='bold')\nax2.grid(True, alpha=0.3)\nax2.fill_between(yearly_goals.index, yearly_goals.values, alpha=0.3, color='#e74c3c')\nst.pyplot(fig2)\nst.markdown(\"**💡 Analyse :** Observation de la tendance de l'offensivité du jeu au fil des années.\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "home_goals",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "home_goals = top_teams_df.groupby('home_team')['home_team_goal'].sum()\naway_goals = top_teams_df.groupby('away_team')['away_team_goal'].sum()\ntotal_goals_by_team = pd.DataFrame({\n    'home_goals': home_goals,\n    'away_goals': away_goals\n}).fillna(0)\ntotal_goals_by_team['total'] = total_goals_by_team['home_goals'] + total_goals_by_team['away_goals']\ntop_teams = total_goals_by_team.sort_values('total', ascending=False).head(10)\nfig3, ax3 = plt.subplots(figsize=(10, 6))\nbars = ax3.barh(range(len(top_teams)), top_teams['total'], color='#2ecc71', edgecolor='black')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "away_goals",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "away_goals = top_teams_df.groupby('away_team')['away_team_goal'].sum()\ntotal_goals_by_team = pd.DataFrame({\n    'home_goals': home_goals,\n    'away_goals': away_goals\n}).fillna(0)\ntotal_goals_by_team['total'] = total_goals_by_team['home_goals'] + total_goals_by_team['away_goals']\ntop_teams = total_goals_by_team.sort_values('total', ascending=False).head(10)\nfig3, ax3 = plt.subplots(figsize=(10, 6))\nbars = ax3.barh(range(len(top_teams)), top_teams['total'], color='#2ecc71', edgecolor='black')\nax3.set_yticks(range(len(top_teams)))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "total_goals_by_team",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "total_goals_by_team = pd.DataFrame({\n    'home_goals': home_goals,\n    'away_goals': away_goals\n}).fillna(0)\ntotal_goals_by_team['total'] = total_goals_by_team['home_goals'] + total_goals_by_team['away_goals']\ntop_teams = total_goals_by_team.sort_values('total', ascending=False).head(10)\nfig3, ax3 = plt.subplots(figsize=(10, 6))\nbars = ax3.barh(range(len(top_teams)), top_teams['total'], color='#2ecc71', edgecolor='black')\nax3.set_yticks(range(len(top_teams)))\nax3.set_yticklabels(top_teams.index)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "total_goals_by_team['total']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "total_goals_by_team['total'] = total_goals_by_team['home_goals'] + total_goals_by_team['away_goals']\ntop_teams = total_goals_by_team.sort_values('total', ascending=False).head(10)\nfig3, ax3 = plt.subplots(figsize=(10, 6))\nbars = ax3.barh(range(len(top_teams)), top_teams['total'], color='#2ecc71', edgecolor='black')\nax3.set_yticks(range(len(top_teams)))\nax3.set_yticklabels(top_teams.index)\nax3.set_xlabel('Nombre total de buts', fontsize=12)\nax3.set_title('Top 10 des équipes par buts marqués', fontsize=14, fontweight='bold')\nax3.invert_yaxis()\n# Ajouter les valeurs sur les barres",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "top_teams",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "top_teams = total_goals_by_team.sort_values('total', ascending=False).head(10)\nfig3, ax3 = plt.subplots(figsize=(10, 6))\nbars = ax3.barh(range(len(top_teams)), top_teams['total'], color='#2ecc71', edgecolor='black')\nax3.set_yticks(range(len(top_teams)))\nax3.set_yticklabels(top_teams.index)\nax3.set_xlabel('Nombre total de buts', fontsize=12)\nax3.set_title('Top 10 des équipes par buts marqués', fontsize=14, fontweight='bold')\nax3.invert_yaxis()\n# Ajouter les valeurs sur les barres\nfor i, bar in enumerate(bars):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "bars",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "bars = ax3.barh(range(len(top_teams)), top_teams['total'], color='#2ecc71', edgecolor='black')\nax3.set_yticks(range(len(top_teams)))\nax3.set_yticklabels(top_teams.index)\nax3.set_xlabel('Nombre total de buts', fontsize=12)\nax3.set_title('Top 10 des équipes par buts marqués', fontsize=14, fontweight='bold')\nax3.invert_yaxis()\n# Ajouter les valeurs sur les barres\nfor i, bar in enumerate(bars):\n    width = bar.get_width()\n    ax3.text(width, bar.get_y() + bar.get_height()/2, ",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "leagues",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "leagues = ['Premier League', 'La Liga', 'Serie A', 'Bundesliga', 'Ligue 1']\ncountries = ['England', 'Spain', 'Italy', 'Germany', 'France']\nteams_by_league = {\n    'Premier League': ['Manchester United', 'Liverpool', 'Chelsea', 'Arsenal', 'Manchester City', \n                       'Tottenham', 'Everton', 'Leicester City', 'West Ham', 'Newcastle'],\n    'La Liga': ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Sevilla', 'Valencia', \n                'Villarreal', 'Real Sociedad', 'Athletic Bilbao', 'Real Betis', 'Getafe'],\n    'Serie A': ['Juventus', 'AC Milan', 'Inter Milan', 'Roma', 'Napoli', \n                'Lazio', 'Atalanta', 'Fiorentina', 'Torino', 'Sassuolo'],\n    'Bundesliga': ['Bayern Munich', 'Borussia Dortmund', 'RB Leipzig', 'Bayer Leverkusen', 'Wolfsburg',",
+        "detail": "generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "countries",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "countries = ['England', 'Spain', 'Italy', 'Germany', 'France']\nteams_by_league = {\n    'Premier League': ['Manchester United', 'Liverpool', 'Chelsea', 'Arsenal', 'Manchester City', \n                       'Tottenham', 'Everton', 'Leicester City', 'West Ham', 'Newcastle'],\n    'La Liga': ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Sevilla', 'Valencia', \n                'Villarreal', 'Real Sociedad', 'Athletic Bilbao', 'Real Betis', 'Getafe'],\n    'Serie A': ['Juventus', 'AC Milan', 'Inter Milan', 'Roma', 'Napoli', \n                'Lazio', 'Atalanta', 'Fiorentina', 'Torino', 'Sassuolo'],\n    'Bundesliga': ['Bayern Munich', 'Borussia Dortmund', 'RB Leipzig', 'Bayer Leverkusen', 'Wolfsburg',\n                   'Eintracht Frankfurt', 'Borussia Monchengladbach', 'Stuttgart', 'Hoffenheim', 'Mainz'],",
+        "detail": "generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "teams_by_league",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "teams_by_league = {\n    'Premier League': ['Manchester United', 'Liverpool', 'Chelsea', 'Arsenal', 'Manchester City', \n                       'Tottenham', 'Everton', 'Leicester City', 'West Ham', 'Newcastle'],\n    'La Liga': ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Sevilla', 'Valencia', \n                'Villarreal', 'Real Sociedad', 'Athletic Bilbao', 'Real Betis', 'Getafe'],\n    'Serie A': ['Juventus', 'AC Milan', 'Inter Milan', 'Roma', 'Napoli', \n                'Lazio', 'Atalanta', 'Fiorentina', 'Torino', 'Sassuolo'],\n    'Bundesliga': ['Bayern Munich', 'Borussia Dortmund', 'RB Leipzig', 'Bayer Leverkusen', 'Wolfsburg',\n                   'Eintracht Frankfurt', 'Borussia Monchengladbach', 'Stuttgart', 'Hoffenheim', 'Mainz'],\n    'Ligue 1': ['PSG', 'Marseille', 'Lyon', 'Monaco', 'Lille', ",
+        "detail": "generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "matches_data",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "matches_data = []\nmatch_id = 1\nseasons = ['2018/2019', '2019/2020', '2020/2021', '2021/2022', '2022/2023', '2023/2024']\nfor season in seasons:\n    year = int(season.split('/')[0])\n    start_date = datetime(year, 8, 1)\n    for league, country in zip(leagues, countries):\n        teams = teams_by_league[league]\n        # Chaque équipe joue contre chaque autre équipe 2 fois (domicile et extérieur)\n        for i, home_team in enumerate(teams):",
+        "detail": "generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "match_id",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "match_id = 1\nseasons = ['2018/2019', '2019/2020', '2020/2021', '2021/2022', '2022/2023', '2023/2024']\nfor season in seasons:\n    year = int(season.split('/')[0])\n    start_date = datetime(year, 8, 1)\n    for league, country in zip(leagues, countries):\n        teams = teams_by_league[league]\n        # Chaque équipe joue contre chaque autre équipe 2 fois (domicile et extérieur)\n        for i, home_team in enumerate(teams):\n            for j, away_team in enumerate(teams):",
+        "detail": "generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "seasons",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "seasons = ['2018/2019', '2019/2020', '2020/2021', '2021/2022', '2022/2023', '2023/2024']\nfor season in seasons:\n    year = int(season.split('/')[0])\n    start_date = datetime(year, 8, 1)\n    for league, country in zip(leagues, countries):\n        teams = teams_by_league[league]\n        # Chaque équipe joue contre chaque autre équipe 2 fois (domicile et extérieur)\n        for i, home_team in enumerate(teams):\n            for j, away_team in enumerate(teams):\n                if i != j:",
+        "detail": "generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "generate_data",
+        "description": "generate_data",
+        "peekOfCode": "df = pd.DataFrame(matches_data)\n# Sauvegarder\ndf.to_csv('/home/claude/football_project/matches.csv', index=False)\nprint(f\"✅ Dataset créé avec {len(df)} matchs\")\nprint(f\"📊 Saisons : {df['season'].unique()}\")\nprint(f\"🏆 Ligues : {df['league'].unique()}\")\nprint(f\"⚽ Nombre total de buts : {df['home_team_goal'].sum() + df['away_team_goal'].sum()}\")",
+        "detail": "generate_data",
+        "documentation": {}
+    }
+]
