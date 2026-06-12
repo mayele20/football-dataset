@@ -174,7 +174,7 @@ Pour obtenir 18-20/20 :
 
 ## 📧 Contact
 
-Pour toute question sur le projet : [votre-email]
+Pour toute question sur le projet : noel.mayele02@gmail.com
 
 ## 📄 Licence
 
